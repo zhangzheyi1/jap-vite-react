@@ -6,8 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import { ConfigProvider } from "antd";
+import zhCN from "antd/locale/zh_CN";
 
 import type { Route } from "./+types/root";
+import { AuthProvider } from "./context/AuthContext";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -25,15 +28,18 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>客户资料管理系统</title>
         <Meta />
         <Links />
       </head>
       <body>
-        {children}
+        <ConfigProvider locale={zhCN}>
+          <AuthProvider>{children}</AuthProvider>
+        </ConfigProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -62,11 +68,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main style={{ padding: "64px 16px", maxWidth: "800px", margin: "0 auto" }}>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre style={{ width: "100%", padding: "16px", overflowX: "auto" }}>
           <code>{stack}</code>
         </pre>
       )}

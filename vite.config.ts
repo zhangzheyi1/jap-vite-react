@@ -7,4 +7,12 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  server: {
+    fs: {
+      allow: ["."],
+    },
+  },
+  optimizeDeps: {
+    include: [],
+  },
 });
