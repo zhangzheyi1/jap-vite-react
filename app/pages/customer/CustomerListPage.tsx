@@ -128,11 +128,17 @@ export default function CustomerListPage() {
             />
             <Input placeholder="客户编号" allowClear style={{ width: 180 }} onChange={(e) => handleSearch('customerNo', e.target.value)} />
             <Input placeholder="负责人" allowClear style={{ width: 120 }} onChange={(e) => handleSearch('responsible', e.target.value)} />
-            <Select placeholder="状态" allowClear style={{ width: 120 }} onChange={(value) => handleSearch('status', value || '')}>
-              <Select.Option value="active">正常</Select.Option>
-              <Select.Option value="inactive">停用</Select.Option>
-              <Select.Option value="archived">已归档</Select.Option>
-            </Select>
+            <Select
+              placeholder="状态"
+              allowClear
+              style={{ width: 120 }}
+              onChange={(value) => handleSearch('status', value || '')}
+              options={[
+                { value: 'active', label: '正常' },
+                { value: 'inactive', label: '停用' },
+                { value: 'archived', label: '已归档' },
+              ]}
+            />
             <Button onClick={handleReset}>重置</Button>
           </Space>
         </Card>

@@ -155,10 +155,13 @@ export default function UserListPage() {
             <Input placeholder="请输入姓名" />
           </Form.Item>
           <Form.Item name="role" label="角色" rules={[{ required: true, message: '请选择角色' }]}>
-            <Select placeholder="请选择角色">
-              <Select.Option value="admin">管理员</Select.Option>
-              <Select.Option value="employee">员工</Select.Option>
-            </Select>
+            <Select
+              placeholder="请选择角色"
+              options={[
+                { value: 'admin', label: '管理员' },
+                { value: 'employee', label: '员工' },
+              ]}
+            />
           </Form.Item>
           {!editingUser && (
             <Form.Item name="password" label="密码" rules={[{ required: true, message: '请输入密码' }]}>

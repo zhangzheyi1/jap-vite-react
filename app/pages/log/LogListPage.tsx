@@ -72,18 +72,24 @@ export default function LogListPage() {
         </Title>
         <Space>
           <Input placeholder="搜索日志" allowClear className={styles.searchInput} prefix={<SearchOutlined />} onChange={(e) => setSearchText(e.target.value)} />
-          <Select placeholder="操作类型" allowClear className={styles.filterSelect} onChange={setActionFilter}>
-            <Select.Option value="login">登录</Select.Option>
-            <Select.Option value="logout">登出</Select.Option>
-            <Select.Option value="customer_create">新增客户</Select.Option>
-            <Select.Option value="customer_update">修改客户</Select.Option>
-            <Select.Option value="customer_delete">删除客户</Select.Option>
-            <Select.Option value="attachment_upload">上传附件</Select.Option>
-            <Select.Option value="attachment_download">下载附件</Select.Option>
-            <Select.Option value="user_create">新增用户</Select.Option>
-            <Select.Option value="user_update">修改用户</Select.Option>
-            <Select.Option value="user_delete">删除用户</Select.Option>
-          </Select>
+          <Select
+            placeholder="操作类型"
+            allowClear
+            className={styles.filterSelect}
+            onChange={setActionFilter}
+            options={[
+              { value: 'login', label: '登录' },
+              { value: 'logout', label: '登出' },
+              { value: 'customer_create', label: '新增客户' },
+              { value: 'customer_update', label: '修改客户' },
+              { value: 'customer_delete', label: '删除客户' },
+              { value: 'attachment_upload', label: '上传附件' },
+              { value: 'attachment_download', label: '下载附件' },
+              { value: 'user_create', label: '新增用户' },
+              { value: 'user_update', label: '修改用户' },
+              { value: 'user_delete', label: '删除用户' },
+            ]}
+          />
         </Space>
       </div>
 

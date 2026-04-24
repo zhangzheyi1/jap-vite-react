@@ -115,13 +115,14 @@ export default function AttachmentListPage() {
           附件管理
         </Title>
         <Space className={styles.toolbar}>
-          <Select placeholder="选择客户" style={{ width: 200 }} allowClear value={selectedCustomer} onChange={setSelectedCustomer}>
-            {customers.map((c) => (
-              <Select.Option key={c.id} value={c.id}>
-                {c.name}
-              </Select.Option>
-            ))}
-          </Select>
+          <Select
+            placeholder="选择客户"
+            style={{ width: 200 }}
+            allowClear
+            value={selectedCustomer}
+            onChange={setSelectedCustomer}
+            options={customers.map((c) => ({ value: c.id, label: c.name }))}
+          />
           <Upload beforeUpload={handleUpload} showUploadList={false}>
             <Button type="primary" icon={<InboxOutlined />} className={styles.uploadBtn}>
               上传附件
