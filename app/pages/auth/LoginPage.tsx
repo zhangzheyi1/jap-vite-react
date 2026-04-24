@@ -3,6 +3,7 @@ import { Form, Input, Button, Card, message, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router';
+import styles from './LoginPage.module.less';
 
 const { Title, Text } = Typography;
 
@@ -29,18 +30,10 @@ export default function LoginPage() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: '#f5f5f5',
-      }}
-    >
-      <Card style={{ width: 400, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-        <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <Title level={3} style={{ margin: 0, color: '#1890ff' }}>
+    <div className={styles.container}>
+      <Card className={styles.card}>
+        <div className={styles.header}>
+          <Title level={3} className={styles.title}>
             客户资料管理系统
           </Title>
           <Text type="secondary">Customer Data Management System</Text>
@@ -76,7 +69,7 @@ export default function LoginPage() {
           </Form.Item>
 
           <Form.Item name="remember" valuePropName="checked">
-            <span style={{ color: '#8c8c8c' }}>记住我</span>
+            <span className={styles.rememberText}>记住我</span>
           </Form.Item>
 
           <Form.Item>
@@ -85,14 +78,14 @@ export default function LoginPage() {
               htmlType="submit"
               loading={loading}
               block
-              style={{ background: '#1890ff' }}
+              className={styles.submitBtn}
             >
               登录
             </Button>
           </Form.Item>
 
-          <div style={{ textAlign: 'center', marginTop: 16 }}>
-            <Text type="secondary" style={{ fontSize: 12 }}>
+          <div className={styles.footer}>
+            <Text type="secondary" className={styles.hint}>
               默认账户: admin / password
             </Text>
           </div>

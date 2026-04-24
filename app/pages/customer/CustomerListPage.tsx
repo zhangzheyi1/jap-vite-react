@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import { customerService } from '../../services/api';
 import type { Customer, SearchParams } from '../../types';
 import { formatDate, formatStatus, getStatusColor } from '../../utils';
+import styles from './CustomerListPage.module.less';
 
 const { Title } = Typography;
 
@@ -101,22 +102,22 @@ export default function CustomerListPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Title level={4} style={{ margin: 0 }}>
+      <div className={styles.header}>
+        <Title level={4} className={styles.title}>
           客户资料列表
         </Title>
         <Space>
           <Button icon={<FilterOutlined />} onClick={() => setSearchVisible(!searchVisible)}>
             筛选
           </Button>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate('/customers/new')} style={{ background: '#1890ff' }}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => navigate('/customers/new')} className={styles.addBtn}>
             新增客户
           </Button>
         </Space>
       </div>
 
       {searchVisible && (
-        <Card size="small" style={{ marginBottom: 16 }}>
+        <Card size="small" className={styles.searchCard}>
           <Space wrap>
             <Input
               placeholder="客户名称"

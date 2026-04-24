@@ -4,6 +4,7 @@ import { TeamOutlined, FileOutlined, UserOutlined, HistoryOutlined } from '@ant-
 import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
 import { customerService, attachmentService, userService, logService } from '../../services/api';
+import styles from './DashboardPage.module.less';
 
 const { Title } = Typography;
 
@@ -63,14 +64,14 @@ export default function DashboardPage() {
           <Card
             hoverable
             onClick={() => handleCardClick('/customers')}
-            style={{ borderColor: '#1890ff' }}
+            className={styles.card}
           >
             <Statistic
               title="客户总数"
               value={stats.totalCustomers}
-              prefix={<TeamOutlined style={{ color: '#1890ff' }} />}
+              prefix={<TeamOutlined className={styles.statIcon} />}
             />
-            <div style={{ color: '#8c8c8c', marginTop: 8 }}>
+            <div className={styles.subText}>
               正常: {stats.activeCustomers}
             </div>
           </Card>
@@ -90,7 +91,7 @@ export default function DashboardPage() {
           <Card
             hoverable
             onClick={() => handleCardClick('/users')}
-            style={{ display: user?.role === 'admin' ? 'block' : 'none' }}
+            className={user?.role === 'admin' ? undefined : styles.hidden}
           >
             <Statistic
               title="用户总数"
@@ -104,12 +105,12 @@ export default function DashboardPage() {
           <Card
             hoverable
             onClick={() => handleCardClick('/logs')}
-            style={{ display: user?.role === 'admin' ? 'block' : 'none' }}
+            className={user?.role === 'admin' ? undefined : styles.hidden}
           >
             <Statistic
               title="今日操作"
               value={stats.todayLogs}
-              prefix={<HistoryOutlined style={{ color: '#ff4d4f' }} />}
+              prefix={<HistoryOutlined className={styles.todayStatIcon} />}
             />
           </Card>
         </Col>

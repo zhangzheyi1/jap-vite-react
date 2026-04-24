@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router';
 import { customerService, attachmentService } from '../../services/api';
 import type { Customer, Attachment } from '../../types';
 import { formatDate, formatStatus, getStatusColor, formatFileSize } from '../../utils';
+import styles from './CustomerDetailPage.module.less';
 
 const { Title } = Typography;
 
@@ -37,16 +38,16 @@ export default function CustomerDetailPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className={styles.header}>
         <Space>
           <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/customers')}>
             返回
           </Button>
-          <Title level={4} style={{ margin: 0 }}>
+          <Title level={4} className={styles.title}>
             客户详情
           </Title>
         </Space>
-        <Button type="primary" icon={<EditOutlined />} onClick={() => navigate(`/customers/${id}/edit`)} style={{ background: '#1890ff' }}>
+        <Button type="primary" icon={<EditOutlined />} onClick={() => navigate(`/customers/${id}/edit`)} className={styles.editBtn}>
           编辑
         </Button>
       </div>
@@ -74,7 +75,7 @@ export default function CustomerDetailPage() {
       </Card>
 
       {attachments.length > 0 && (
-        <Card title="附件列表" style={{ marginTop: 16 }}>
+        <Card title="附件列表" className={styles.card}>
           <Table
             columns={[
               { title: '文件名', dataIndex: 'fileName', key: 'fileName' },

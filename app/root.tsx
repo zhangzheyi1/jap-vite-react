@@ -12,6 +12,7 @@ import zhCN from "antd/locale/zh_CN";
 import type { Route } from "./+types/root";
 import { AuthProvider } from "./context/AuthContext";
 import "./app.css";
+import styles from "./root.module.less";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -68,11 +69,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main style={{ padding: "64px 16px", maxWidth: "800px", margin: "0 auto" }}>
+    <main className={styles.main}>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre style={{ width: "100%", padding: "16px", overflowX: "auto" }}>
+        <pre className={styles.pre}>
           <code>{stack}</code>
         </pre>
       )}

@@ -4,6 +4,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { logService } from '../../services/api';
 import type { OperationLog } from '../../types';
 import { formatDate, formatAction, getActionColor } from '../../utils';
+import styles from './LogListPage.module.less';
 
 const { Title } = Typography;
 
@@ -65,13 +66,13 @@ export default function LogListPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Title level={4} style={{ margin: 0 }}>
+      <div className={styles.header}>
+        <Title level={4} className={styles.title}>
           操作日志
         </Title>
         <Space>
-          <Input placeholder="搜索日志" allowClear style={{ width: 200 }} prefix={<SearchOutlined />} onChange={(e) => setSearchText(e.target.value)} />
-          <Select placeholder="操作类型" allowClear style={{ width: 120 }} onChange={setActionFilter}>
+          <Input placeholder="搜索日志" allowClear className={styles.searchInput} prefix={<SearchOutlined />} onChange={(e) => setSearchText(e.target.value)} />
+          <Select placeholder="操作类型" allowClear className={styles.filterSelect} onChange={setActionFilter}>
             <Select.Option value="login">登录</Select.Option>
             <Select.Option value="logout">登出</Select.Option>
             <Select.Option value="customer_create">新增客户</Select.Option>

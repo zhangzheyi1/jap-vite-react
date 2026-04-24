@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from 'react-router';
 import { Spin } from 'antd';
 import { useAuth } from '../context/AuthContext';
+import styles from './ProtectedRoute.module.less';
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
@@ -8,7 +9,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (isLoading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+      <div className={styles.spinContainer}>
         <Spin size="large" />
       </div>
     );

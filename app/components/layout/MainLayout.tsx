@@ -14,6 +14,7 @@ import {
 import { useNavigate, useLocation, Link, Outlet } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
 import type { MenuProps } from 'antd';
+import styles from './MainLayout.module.less';
 
 const { Header, Sider, Content } = Layout;
 
@@ -65,53 +66,33 @@ export default function MainLayout({ children }: MainLayoutProps) {
     .map((item) => item.key as string) || [];
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout className={styles.layout}>
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
-        style={{ background: '#001529' }}
+        className={styles.sider}
         width={240}
         collapsedWidth={80}
       >
-        <div
-          style={{
-            height: 64,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#fff',
-            fontSize: collapsed ? 14 : 18,
-            fontWeight: 'bold',
-            borderBottom: '1px solid #ffffff20',
-          }}
-        >
+        <div className={styles.siderHeader}>
           {collapsed ? 'CDMS' : '客户管理系统'}
         </div>
-        <Menu theme="dark" mode="inline" selectedKeys={selectedKeys} items={menuItems} style={{ background: '#001529' }} />
+        <Menu theme="dark" mode="inline" selectedKeys={selectedKeys} items={menuItems} className={styles.siderMenu} />
       </Sider>
       <Layout>
-        <Header
-          style={{
-            padding: '0 24px',
-            background: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            borderBottom: '1px solid #f0f0f0',
-          }}
-        >
-          <div onClick={() => setCollapsed(!collapsed)} style={{ fontSize: 18, cursor: 'pointer', color: '#1890ff' }}>
+        <Header className={styles.header}>
+          <div onClick={() => setCollapsed(!collapsed)} className={styles.collapseBtn}>
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </div>
           <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
-            <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Avatar style={{ background: '#1890ff' }}>{user?.name?.charAt(0) || 'U'}</Avatar>
+            <div className={styles.userMenu}>
+              <Avatar className={styles.avatar}>{user?.name?.charAt(0) || 'U'}</Avatar>
               <span>{user?.name}</span>
             </div>
           </Dropdown>
         </Header>
-        <Content style={{ margin: 24, padding: 24, background: '#fff', borderRadius: 8, minHeight: 280, overflow: 'auto' }}>
+        <Content className={styles.content}>
           {children || <Outlet />}
         </Content>
       </Layout>

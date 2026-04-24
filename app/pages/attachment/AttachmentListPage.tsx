@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { attachmentService, customerService } from '../../services/api';
 import type { Attachment, Customer } from '../../types';
 import { formatDate, formatFileSize } from '../../utils';
+import styles from './AttachmentListPage.module.less';
 
 const { Title } = Typography;
 
@@ -109,11 +110,11 @@ export default function AttachmentListPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Title level={4} style={{ margin: 0 }}>
+      <div className={styles.header}>
+        <Title level={4} className={styles.title}>
           附件管理
         </Title>
-        <Space>
+        <Space className={styles.toolbar}>
           <Select placeholder="选择客户" style={{ width: 200 }} allowClear value={selectedCustomer} onChange={setSelectedCustomer}>
             {customers.map((c) => (
               <Select.Option key={c.id} value={c.id}>
@@ -122,7 +123,7 @@ export default function AttachmentListPage() {
             ))}
           </Select>
           <Upload beforeUpload={handleUpload} showUploadList={false}>
-            <Button type="primary" icon={<InboxOutlined />} style={{ background: '#1890ff' }}>
+            <Button type="primary" icon={<InboxOutlined />} className={styles.uploadBtn}>
               上传附件
             </Button>
           </Upload>

@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { userService } from '../../services/api';
 import type { User, UserFormData } from '../../types';
 import { formatDate, formatStatus, getStatusColor, formatRole, getRoleColor } from '../../utils';
+import styles from './UserListPage.module.less';
 
 const { Title } = Typography;
 
@@ -129,13 +130,13 @@ export default function UserListPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Title level={4} style={{ margin: 0 }}>
+      <div className={styles.header}>
+        <Title level={4} className={styles.title}>
           用户管理
         </Title>
         <Space>
-          <Input placeholder="搜索用户" allowClear style={{ width: 200 }} prefix={<SearchOutlined />} onChange={(e) => handleSearch(e.target.value)} />
-          <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd} style={{ background: '#1890ff' }}>
+          <Input placeholder="搜索用户" allowClear className={styles.searchInput} prefix={<SearchOutlined />} onChange={(e) => handleSearch(e.target.value)} />
+          <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd} className={styles.addBtn}>
             新增用户
           </Button>
         </Space>

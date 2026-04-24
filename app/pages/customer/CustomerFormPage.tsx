@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import { useAuth } from '../../context/AuthContext';
 import { customerService } from '../../services/api';
 import type { CustomerFormData } from '../../types';
+import styles from './CustomerFormPage.module.less';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -33,16 +34,16 @@ export default function CustomerFormPage() {
 
   return (
     <div>
-      <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className={styles.header}>
         <Space>
           <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/customers')}>
             返回
           </Button>
-          <Title level={4} style={{ margin: 0 }}>
+          <Title level={4} className={styles.title}>
             新增客户
           </Title>
         </Space>
-        <Button type="primary" icon={<SaveOutlined />} onClick={handleSubmit} loading={loading} style={{ background: '#1890ff' }}>
+        <Button type="primary" icon={<SaveOutlined />} onClick={handleSubmit} loading={loading} className={styles.saveBtn}>
           保存
         </Button>
       </div>

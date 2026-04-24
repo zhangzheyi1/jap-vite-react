@@ -1,12 +1,23 @@
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
-import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter(), react()],
+  plugins: [tailwindcss(), reactRouter()],
   resolve: {
     tsconfigPaths: true,
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {},
+      },
+    },
+    modules: {
+      localsConvention: 'camelCase',
+      generateScopedName: '[name]__[local]__[hash:base64:5]',
+    },
   },
   server: {
     fs: {
